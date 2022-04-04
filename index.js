@@ -23,6 +23,10 @@ mongoose
     console.log(err);
   });
 
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 app.use("/api/pins", pinRoute);
 app.use("/api/users", userRoute);
 app.use("/api/v1/orders", ordersRoute);

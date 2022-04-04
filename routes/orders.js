@@ -46,7 +46,10 @@ const getOrders = async (query, res) => {
   const axiosRes = await axios(config).catch((err) =>
     console.log("axios error")
   );
-  let data = convert.xml2json(axiosRes.data, { compact: true, spaces: 4 });
+  let data = await convert.xml2json(axiosRes.data, {
+    compact: true,
+    spaces: 4,
+  });
   let ordersData = JSON.parse(data);
   let orders;
 
