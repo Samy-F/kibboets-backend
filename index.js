@@ -7,6 +7,8 @@ const koerierRoute = require("./routes/koeriers");
 const { ordersRoute } = require("./routes/orders");
 const koerierData = require("./routes/koerierData");
 
+let port = process.env.PORT || 3000;
+
 const app = express();
 dotenv.config();
 
@@ -27,6 +29,6 @@ app.use("/api/v1/orders", ordersRoute);
 app.use("/api/v1/koeriers", koerierRoute);
 app.use("/api/v1/data", koerierData);
 
-app.listen(8800, () => {
-  console.log("Backend server is running!");
+app.listen(port, () => {
+  console.log("App is listening on port: " + port);
 });
