@@ -24,7 +24,26 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  var axios = require("axios");
+
+  var config = {
+    method: "get",
+    url: "https://api.foodticket.net/1/orders?sdate_start=2021-03-04&sdate_end=2021-03-05",
+    headers: {
+      "X-OrderBuddy-Client-Id": "5704",
+      "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
+    },
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      res.send(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.send(error);
+    });
 });
 
 app.use("/api/pins", pinRoute);
