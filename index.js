@@ -7,7 +7,7 @@ const koerierRoute = require("./routes/koeriers");
 const { ordersRoute } = require("./routes/orders");
 const koerierData = require("./routes/koerierData");
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 8800;
 
 const app = express();
 dotenv.config();
