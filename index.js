@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
   var config = {
     method: "get",
-    url: "https://api.foodticket.net/1/orders?sdate_start=2021-03-04&sdate_end=2021-03-05",
+    url: "https://api.foodticket.net/1/orders?",
     headers: {
       "X-OrderBuddy-Client-Id": "5704",
       "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
@@ -38,11 +38,11 @@ app.get("/", (req, res) => {
   axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
-      res.send("response");
+      res.send(response);
     })
     .catch(function (error) {
       console.log(error);
-      res.send("axios error");
+      res.status(503).json(error);
     });
 });
 
