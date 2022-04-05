@@ -23,8 +23,6 @@ mongoose
     console.log(err);
   });
 
-const proxy = require("express-http-proxy");
-
 app.get("/", (req, res) => {
   var axios = require("axios");
 
@@ -50,7 +48,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/pins", pinRoute);
 app.use("/api/users", userRoute);
-app.use("/api/v1/orders", proxy(ordersRoute));
+app.use("/api/v1/orders", ordersRoute);
 app.use("/api/v1/koeriers", koerierRoute);
 app.use("/api/v1/data", koerierData);
 
