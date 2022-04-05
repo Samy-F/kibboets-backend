@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
   var config = {
     method: "get",
-    url: "https://api.foodticket.net/1/orders?",
+    url: "https://api.foodticket.net/1/orders?sdate_start=2021-03-04&sdate_end=2021-03-05",
     headers: {
       "X-OrderBuddy-Client-Id": "5704",
       "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
