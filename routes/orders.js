@@ -79,6 +79,11 @@ const getOrders = async (query, res) => {
       orders = orders.map((order) => {
         return {
           address: order.address._text,
+          street: order.street._text,
+          streetnumber: order.streetnumber._text,
+          zipcode: order.zipcode._text,
+          city: order.city._text,
+          time_set: order.time_set._text || "ZSM",
           id: order.id._text,
         };
       });
@@ -127,38 +132,39 @@ router.get("/", async (req, res) => {
 });
 
 router.patch("/", async (req, res) => {
-  try {
-    let orderId = req.query.orderId;
-    let driverId = req.query.driverId;
-    let status = req.query.status;
+  // try {
+  //   let orderId = req.query.orderId;
+  //   let driverId = req.query.driverId;
+  //   let status = req.query.status;
 
-    let url = `https://api.foodticket.nl/1/orders?id=${orderId}&deliverer_id=${driverId}&status=${status}`;
-    console.log(orderId);
-    console.log(driverId);
-    console.log(status);
-    console.log(url);
+  //   let url = `https://api.foodticket.nl/1/orders?id=${orderId}&deliverer_id=${driverId}&status=${status}`;
+  //   console.log(orderId);
+  //   console.log(driverId);
+  //   console.log(status);
+  //   console.log(url);
 
-    var config = {
-      method: "patch",
-      url,
-      headers: {
-        "X-OrderBuddy-Client-Id": "5704",
-        "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
-      },
-    };
+  //   var config = {
+  //     method: "patch",
+  //     url,
+  //     headers: {
+  //       "X-OrderBuddy-Client-Id": "5704",
+  //       "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
+  //     },
+  //   };
 
-    const axiosRes = await axios(config).catch((err) => {
-      res
-        .status(404)
-        .json({ error: err.message, message: "Invalid input", status: 404 });
-      //   console.log(err);
-    });
-    res
-      .status(200)
-      .json({ message: "Order patched successfully", status: 200 });
-  } catch (err) {
-    res.status(500);
-  }
+  //   const axiosRes = await axios(config).catch((err) => {
+  //     res
+  //       .status(404)
+  //       .json({ error: err.message, message: "Invalid input", status: 404 });
+  //     //   console.log(err);
+  //   });
+  //   res
+  //     .status(200)
+  //     .json({ message: "Order patched successfully", status: 200 });
+  // } catch (err) {
+  //   res.status(500);
+  // }
+  res.status(200).json("test");
 });
 
 module.exports = {

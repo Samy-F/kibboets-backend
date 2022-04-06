@@ -6,6 +6,7 @@ const userRoute = require("./routes/users");
 const koerierRoute = require("./routes/koeriers");
 const { ordersRoute } = require("./routes/orders");
 const koerierData = require("./routes/koerierData");
+var cors = require("cors");
 
 let port = process.env.PORT || 8800;
 
@@ -13,6 +14,7 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
+app.use(cors());
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -22,29 +24,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-app.get("/", (req, res) => {
-  var axios = require("axios");
-
-  var config = {
-    method: "get",
-    url: "https://api.foodticket.net/1/orders?sdate_start=2021-03-04&sdate_end=2021-03-05",
-    headers: {
-      "X-OrderBuddy-Client-Id": "5704",
-      "X-OrderBuddy-API-Key": "91ee337266ee0790e95a20bd5793c4dd",
-    },
-  };
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      res.send(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-      res.status(503).json(error);
-    });
-});
 
 app.use("/api/pins", pinRoute);
 app.use("/api/users", userRoute);
